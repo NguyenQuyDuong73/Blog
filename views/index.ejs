@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>LeanMagazine</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="ie.css" />
+<script type="text/javascript" src="js/unitpngfix.js"></script>
+<![endif]-->
+</head>
+<body>
+<!-- BEGIN wrapper -->
+<div id="wrapper">
+  <!-- BEGIN header -->
+  <div id="header">
+    <ul class="pages">
+      <li><a href="/">Home</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="contact.html">Contact Page</a></li>
+      <% if (user) { %>
+        <% if (user.Role == "admin" || user.Role == "Author") { %>
+            <li><a href="/admin">Trang quản trị</a></li>
+        <% } %>
+      <% } %>
+
+    </ul>
+    <p class="links"><a href="#">Email</a> | <a href="#">Comments</a> | 
+      <% if(user) { %>
+        <a ><%=user.Username %></a> | <a href="/logout">Đăng xuất</a>
+      <% } else { %>
+        <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+    </p>
+    <h1><a href="/">Chúi</a></h1>
+    <div class="ad"><a href="#"><img src="images/ad468x60.gif" alt="" /></a></div>
+    <ul class="categories">
+      <!-- <li><a href="#">Advertising</a></li>
+      <li><a href="#">Entertainment</a></li>
+      <li><a href="#">Fashion</a></li>
+      <li><a href="#">Lifestyle</a></li>
+      <li><a href="#">Podcast</a></li>
+      <li><a href="#">Videos</a></li> -->
+    </ul>
+  </div>
+  <!-- END header -->
+  <div id="body">
+    <!-- BEGIN content -->
+    <div id="content">
+      <div class="head">
+        <div class="foot">
+          <!-- begin featured -->
+          
+          <div class="featured">
+            <h2 class="title">Featured Posts</h2>
+            <div class="thumb">
+              <div class="b">
+                <ul class="photo">
+                  <% let IsFirst = true; %>
+                  <% for (const blogmain of user_regis) { %>
+                    <% if(blogmain.Kind == "tin chính") { %>
+                      <li class="<%= IsFirst ? 'first' : '' %>"><a href="/blogdetail/<%= blogmain._id %>"><img src="<%= blogmain.image %>" alt="" /></a></li>
+                  <!-- <li class="first"><a href="#"><img src="images/1.jpg" alt="" /></a></li>
+                  <li class="first"><a href="#"><img src="images/2.jpg" alt="" /></a></li> -->
+                      <% IsFirst = false; %>
+                    <% } %>
+                  <% } %>
+                </ul>
+                <ul class="text">
+                  <% let isFirst = true; %>
+                  <% for (const blogmain of user_regis) { %>
+                    <% if(blogmain.Kind == "tin chính") { %>
+                      <li class="<%= isFirst ? 'first' : '' %>">
+                    <h2><a href="/blogdetail/<%= blogmain._id %>"><%= blogmain.Title %></a></h2>
+                    <p><%= blogmain.Briefnews %></p>
+                    <a href="/blogdetail/<%= blogmain._id %>" class="readmore">Read Full Story</a> </li>
+                      <% isFirst = false; %>
+                    <% } %>
+                  <% } %>
+                  <!-- <li>
+                    <h2><a href="#">Slide Gallery 2</a></h2>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum. Donec tristique dolor nec nisi. Ut faucibus metus non orci. Etiam posuere netus, libero condimentum eu. Aenean a ut. Elit aliquet porttitor. Donec tristique dolor nec nisi. Ut faucibus metus non orci.</p>
+                    <a href="#" class="readmore">Read Full Story</a> </li>
+                  <li>
+                    <h2><a href="#">Slide Gallery 3</a></h2>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum. Donec tristique dolor nec nisi. Ut faucibus metus non orci. Etiam posuere netus, libero condimentum eu. Aenean a ut. Elit aliquet porttitor. Donec tristique dolor nec nisi. Ut faucibus metus non orci.</p>
+                    <a href="#" class="readmore">Read Full Story</a> </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- end featured -->
+          <!-- begin post -->
+          <% for (const blog of user_regis) { %>
+          <div class="post">
+            <div class="l"> <a href="/blogdetail/<%= blog._id %>"><img src="<%= blog.image %>" alt="" /></a> </div>
+            <div class="r">
+              <h2><a href="/blogdetail/<%= blog._id %>"><%= blog.Title %></a></h2>
+              <p><%= blog.Briefnews %></p>
+              <p class="details"><a href="#"><%= blog.Attime %></a> | <a href="#"><%= blog.Writer %></a></p>
+              <!-- <p class="comments"><a href="#">11 Comments</a></p> -->
+            </div>
+          </div>
+          <% } %>
+          <!-- end post -->
+          <!-- begin post -->
+          <!-- <div class="post">
+            <div class="l"> <a href="#"><img src="images/_thumb2.jpg" alt="" /></a> </div>
+            <div class="r">
+              <h2><a href="#"> Suspendisse interdum</a></h2>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum. Donec tristique dolor nec nisi. Ut faucibus metus non orci. Etiam posuere netus, libero condimentum eu. Aenean a ut. Elit aliquet porttitor. Donec tristique dolor nec nisi. Ut faucibus metus non orci.</p>
+              <p class="details"><a href="#">04.23.09</a> | <a href="#">Advertising</a> | <a href="#">Admin</a></p>
+              <p class="comments"><a href="#">11 Comments</a></p>
+            </div>
+          </div> -->
+          <!-- end post -->
+          <!-- begin post -->
+          <!-- <div class="post">
+            <div class="l"> <a href="#"><img src="images/_thumb3.jpg" alt="" /></a> </div>
+            <div class="r">
+              <h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum. Donec tristique dolor nec nisi. Ut faucibus metus non orci. Etiam posuere netus, libero condimentum eu. Aenean a ut. Elit aliquet porttitor. Donec tristique dolor nec nisi. Ut faucibus metus non orci.</p>
+              <p class="details"><a href="#">04.23.09</a> | <a href="#">Advertising</a> | <a href="#">Admin</a></p>
+              <p class="comments"><a href="#">11 Comments</a></p>
+            </div>
+          </div> -->
+          <!-- end post -->
+          <!-- begin post -->
+          <!-- <div class="post">
+            <div class="l"> <a href="#"><img src="images/_thumb4.jpg" alt="" /></a> </div>
+            <div class="r">
+              <h2><a href="#">Ut faucibus metus non orci</a></h2>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum. Donec tristique dolor nec nisi. Ut faucibus metus non orci. Etiam posuere netus, libero condimentum eu. Aenean a ut. Elit aliquet porttitor. Donec tristique dolor nec nisi. Ut faucibus metus non orci.</p>
+              <p class="details"><a href="#">04.23.09</a> | <a href="#">Advertising</a> | <a href="#">Admin</a></p>
+              <p class="comments"><a href="#">11 Comments</a></p>
+            </div>
+          </div> -->
+          <!-- end post -->
+          <!-- BEGIN links -->
+          <div id="links">
+            <!-- begin categories -->
+            <div class="box">
+              <h2>Categories</h2>
+              <ul>
+                <li><a href="#">Advertising</a></li>
+                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Gadgets</a></li>
+                <li><a href="#">Lifestyle</a></li>
+                <li><a href="#">Networking</a></li>
+              </ul>
+            </div>
+            <!-- end categories -->
+            <!-- begin archives -->
+            <div class="box">
+              <h2>Archives</h2>
+              <ul>
+                <li><a href="#">April 2009</a></li>
+                <li><a href="#">March 2009</a></li>
+                <li><a href="#">February 2009</a></li>
+                <li><a href="#">January 2009</a></li>
+                <li><a href="#">December 2008</a></li>
+                <li><a href="#">November 2008</a></li>
+              </ul>
+            </div>
+            <!-- end archives -->
+            <!-- begin blogroll -->
+            <div class="box">
+              <h2>Blogroll</h2>
+              <ul>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Suggest Ideas</a></li>
+                <li><a href="#">Support Forum</a></li>
+              </ul>
+            </div>
+            <!-- end blogroll -->
+            <!-- begin meta -->
+            <div class="box">
+              <h2>Meta</h2>
+              <ul>
+                <li><a href="#">Log in</a></li>
+                <li><a href="#">Valid XHTML</a></li>
+              </ul>
+            </div>
+            <!-- end meta -->
+          </div>
+          <!-- END links -->
+          <div class="break"></div>
+          <!-- begin post navigation -->
+          <div class="postnav">
+            <ul>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+            </ul>
+          </div>
+          <!-- end post navigation -->
+          <div class="break"></div>
+        </div>
+      </div>
+    </div>
+    <!-- END content -->
+    <!-- BEGIN sidebar -->
+    <div id="sidebar">
+      <!-- begin advertisement -->
+      <!-- <div class="ads"> <a href="#"><img src="images/ad125x125.jpg" alt="" /></a> <a href="#"><img src="images/ad125x125.jpg" alt="" /></a> <a href="#"><img src="images/ad125x125.jpg" alt="" /></a> <a href="#"><img src="images/ad125x125.jpg" alt="" /></a> </div> -->
+      <!-- end advertisement -->
+      <!-- begin search -->
+      <form action="#" class="search">
+        <input type="text" name="s" id="s" value="" />
+        <button type="submit">Go</button>
+      </form>
+      <!-- end search -->
+      <!-- begin popular posts -->
+      <div class="box">
+        <h2>Popular Posts</h2>
+        <ul>
+          <li><a href="#">Pellentesque Aapien Orci Blandit</a></li>
+          <li><a href="#">Nam Et Nisi Ut Nunc</a></li>
+          <li><a href="#">Quisque Egestas Posuere Tellus</a></li>
+          <li><a href="#">Quisque Sit Amet Diam</a></li>
+          <li><a href="#">Interdum Arcu Sit Amet Erat</a></li>
+          <li><a href="#">Aenean Lectus Massa </a></li>
+        </ul>
+      </div>
+      <!-- end popular posts -->
+      <!-- begin flickr photos -->
+      <div class="box">
+        <h2>Flickr Photos</h2>
+        <div class="flickr"> <a href="#"><img src="images/_flickr1.jpg" alt="" /></a> <a href="#"><img src="images/_flickr2.jpg" alt="" /></a> <a href="#"><img src="images/_flickr3.jpg" alt="" /></a> <a href="#"><img src="images/_flickr4.jpg" alt="" /></a> <a href="#"><img src="images/_flickr5.jpg" alt="" /></a> <a href="#"><img src="images/_flickr6.jpg" alt="" /></a> </div>
+      </div>
+      <!-- end flickr photos -->
+      <!-- begin featured video -->
+      <div class="box">
+        <h2>Featured Video</h2>
+        <div class="video"> <img src="images/_video.jpg" alt="" /> </div>
+      </div>
+      <!-- end featured video -->
+    </div>
+    <!-- END sidebar -->
+    <div class="break"></div>
+  </div>
+</div>
+<!-- END wrapper -->
+<!-- BEGIN footer -->
+<div id="footer">
+  <p>Copyright &copy; 2009 - <a href="#">Website Name</a> &middot; All Rights Reserved | Template by: <a href="http://www.wpthemedesigner.com/">WordPress Designer</a> | Get More <a href="#">Free CSS Templates</a></p>
+</div>
+<!-- END footer -->
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layouts/header'); -%>
+    <%- include('../layouts/css'); -%>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <ul class="pages">
+              <li><a href="/">Home</a></li>
+              <!-- <li><a href="about.html">About us</a></li>
+              <li><a href="page.html">Demo Page</a></li>
+              <li><a href="contact.html">Contact Page</a></li> -->
+            </ul>
+            <p class="links"><a href="#">Email</a> | <a href="#">Comments</a> | <% if(user) { %>
+                <a ><%=user.Username %></a> | <a href="/logout">Đăng xuất</a>
+              <% } else { %>
+                <a href="/login">Login</a> | <a href="/register">Register</a>
+                <% } %></p>
+            <h1><a href="/">Chúii</a></h1>
+            <!-- <div class="ad"><a href="#"><img src="images/ad468x60.gif" alt="" /></a></div> -->
+            <ul class="categories">
+              <li><a href="/admin/addblog">Thêm bài viết</a></li>
+              <% if (user) { %>
+                <% if(user.Role == "admin") { %>
+                <li><a href="/admin/select">Xem danh sách bài viết</a></li>
+                <% } %>
+              <% } %>
+              <% if (user) { %>
+                <% if(user.Role == "admin") { %>
+                <li><a href="/admin/select_main">Xem danh sách tin chính</a></li>
+                <% } %>
+              <% } %>
+              <% if (user) { %>
+                <% if(user.Role == "admin") { %>
+                <li><a href="/admin/select_user">Xem danh người dùng</a></li>
+                <% } %>
+              <% } %>
+              <!-- <li><a href="#">Fashion</a></li>
+              <li><a href="#">Lifestyle</a></li>
+              <li><a href="#">Podcast</a></li>
+              <li><a href="#">Videos</a></li> -->
+            </ul>
+        </div>
+        <div class="login-container">
+            
+        </div>
+    </div>
+    
+    
+</body>
+</html>

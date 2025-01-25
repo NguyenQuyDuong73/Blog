@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/header'); -%>
+    <%- include('layouts/css'); -%>
+    <style>
+        /* body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        } */
+        .register-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+
+<body>
+    <div id="wrapper">
+    <div id="header">
+        <ul class="pages">
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="page.html">Demo Page</a></li>
+          <li><a href="contact.html">Contact Page</a></li>
+        </ul>
+        <p class="links"><a href="#">Email</a> | <a href="#">Comments</a> | <a href="/login">Login</a> | <a href="/register">Register</a></p>
+        <h1><a href="/">LeanMagazine</a></h1>
+        <div class="ad"><a href="#"><img src="images/ad468x60.gif" alt="" /></a></div>
+        <ul class="categories">
+          <li><a href="#">Advertising</a></li>
+          <li><a href="#">Entertainment</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Lifestyle</a></li>
+          <li><a href="#">Podcast</a></li>
+          <li><a href="#">Videos</a></li>
+        </ul>
+      </div>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="/register" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <label for="username">Username:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="username" name="Username" placeholder="Username" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" id="email" name="Email" placeholder="Email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="password" name="Password" placeholder="Password" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="confirm-password">Confirm Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm-Password" required>
+                    </td>
+                </tr>
+                <tr>
+                    <input type="hidden" name="Role" value="User">
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="btnres" value="Register">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="/login">Đăng nhập tại đây</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

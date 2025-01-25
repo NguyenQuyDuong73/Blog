@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Bài Viết</title>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Giữ lại chiều cao cho body */
+}
+
+.container {
+    max-width: 2000px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.center {
+    text-align: center;
+}
+
+input[type="text"],
+textarea,
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+    </style>
+</head>
+<body>
+    <p style="position: relative;top: -350px;left: 250px;" class="center"><a href="/admin" class="btn">Trở lại</a></p>
+  
+    <div class="post-container">
+        <h2>Thêm Bài Viết</h2>
+        
+        <form action="/api/insert" method="post" enctype="multipart/form-data">
+            <label for="author">Tác Giả:</label>
+            <input type="text" id="Writer" name="Writer" required>
+
+            <label for="title">Tiêu Đề:</label>
+            <input type="text" id="title" name="Title" required>
+            <label for="Briefnews">Tóm tắt</label>
+            <textarea id="Briefnews" name="Briefnews" rows="3" required></textarea>
+            <label for="content">Nội Dung:</label>
+            <textarea id="content" name="Content" rows="5" required></textarea>
+
+            <label for="timestamp">Thời Gian:</label>
+            <input type="datetime-local" id="timestamp" name="Attime" required>
+            <input type="hidden" name="Status" value="Chờ duyệt">
+            <input type="hidden" name="Kind" value="Tin thường">
+            <input type="file" class="form-control" id="image" name="image">
+            <input type="submit" name="submitbtn" value="Thêm Bài Viết">
+        </form>
+    </div>
+</body>
+</html>
